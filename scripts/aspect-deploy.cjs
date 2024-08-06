@@ -9,6 +9,7 @@ const argv = require('yargs')
     .string('wasm')
     .string('properties')
     .array('joinPoints')
+    .default('joinPoints', ["PostContractCall"])
     .argv;
 
 async function deploy() {
@@ -51,7 +52,7 @@ async function deploy() {
     const joinPointsJson = argv.joinPoints
     let joinPoints = []
     if (joinPointsJson && joinPointsJson !== 'undefined') {
-        joinPoints =joinPointsJson
+        joinPoints = joinPointsJson
     }
 
     //read wasm code
@@ -59,9 +60,9 @@ async function deploy() {
     //  --wasm  ./build/release.wasm
     let wasmPath = String(argv.wasm)
     if (!wasmPath || wasmPath === 'undefined') {
-        aspectCode = fs.readFileSync('./build/release.wasm', {encoding: "hex"});
+        aspectCode = fs.readFileSync('./build/release.wasm', { encoding: "hex" });
     } else {
-        aspectCode = fs.readFileSync(wasmPath, {encoding: "hex"});
+        aspectCode = fs.readFileSync(wasmPath, { encoding: "hex" });
     }
     if (!aspectCode || aspectCode === "" || aspectCode === 'undefined') {
         console.log("aspectCode cannot be empty")
