@@ -1,6 +1,8 @@
 node_modules
 build
 
+contracts/
+python/
+
 *.txt
 aspect/index_bk.ts
-python/
